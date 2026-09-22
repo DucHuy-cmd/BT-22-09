@@ -1,0 +1,552 @@
+/* =========================================================
+   THE COZY BEAN - STYLESHEET (theo bản thiết kế mẫu)
+   ========================================================= */
+
+/* ---------- 1. UNIVERSAL SELECTOR (*) ----------
+   Reset mặc định trình duyệt, áp dụng cho MỌI phần tử */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- 2. TAG SELECTOR ----------
+   Định dạng trực tiếp lên thẻ HTML, không cần class/id */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f1e6;   /* nền be/kem nhạt cho toàn trang */
+  color: #3b2417;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', serif;
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================================================
+   HEADER (nền nâu đậm)
+   ========================================================= */
+
+/* ---------- 3. ID SELECTOR ----------
+   #site-header chỉ xuất hiện 1 lần, dùng để đặt ảnh nền mờ trang trí */
+#site-header {
+  background-color: #2c1810;
+  background-image:
+    linear-gradient(rgba(44, 24, 16, 0.88), rgba(44, 24, 16, 0.93)),
+    url('Anh/mauTrangTri.png');
+  background-size: cover;        /* yêu cầu: background-size */
+  background-position: center;   /* yêu cầu: background-position */
+  color: #f7f1e6;
+  padding: 1.2rem 2rem 0;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.btn-book {
+  background-color: #e8871e;   /* màu cam cho nút bấm */
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 30px;
+  transition: background-color 0.25s ease;
+}
+
+.btn-book:hover {
+  background-color: #c96f14;
+}
+
+.header-title {
+  text-align: center;
+  padding: 2.2rem 1rem 1.6rem;
+}
+
+.header-title h1 {
+  font-size: 2.6rem;
+  letter-spacing: 2px;
+  color: #fdf8f0;
+}
+
+.slogan {
+  font-style: italic;
+  opacity: 0.8;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+}
+
+/* ---------- 4. CHILD SELECTOR (>) ----------
+   Chỉ nhắm tới <ul> con trực tiếp của .main-nav */
+.main-nav > ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2.2rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(247, 241, 230, 0.15);
+  font-size: 0.9rem;
+}
+
+.main-nav a {
+  color: #e7d9c4;
+  font-weight: 500;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+/* ---------- 5. PSEUDO-CLASS (:hover) ----------
+   Đổi màu link khi rê chuột, dùng thêm cho trạng thái .active */
+.main-nav a:hover,
+.main-nav a.active {
+  color: #e8871e;
+  border-bottom-color: #e8871e;
+}
+
+/* =========================================================
+   CONTAINER & LAYOUT (2 cột: main 70% - aside 30%)
+   ========================================================= */
+.container {
+  width: 88%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.layout-wrapper {
+  display: flex;                 /* yêu cầu: Flexbox cho bố cục 2 cột */
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 2.2rem 0 3rem;
+}
+
+main {
+  flex: 0 0 70%;
+  max-width: 70%;
+}
+
+aside {
+  flex: 0 0 30%;
+  max-width: 30%;
+  position: sticky;
+  top: 1rem;
+}
+
+/* ---------- main heading + filter pills ---------- */
+.main-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  color: #b5651d;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.page-title {
+  font-size: 1.9rem;
+  color: #2c1810;
+}
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.pill {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+  border-radius: 30px;           /* bo tròn pill */
+  background-color: #fff;
+  border: 1px solid #e6d9c4;
+  color: #5a3825;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pill.active,
+.pill:hover {
+  background-color: #e8871e;
+  border-color: #e8871e;
+  color: #fff;
+}
+
+/* =========================================================
+   SECTION TITLE (h3) - background-origin & background-clip
+   ========================================================= */
+.section-title {
+  margin: 2.2rem 0 1.1rem;
+}
+
+/* ---------- background-origin / background-clip ----------
+   Dải gradient trang trí được tính từ mép viền (origin: border-box)
+   nhưng bị cắt để chỉ hiển thị trong vùng padding (clip: padding-box) */
+.section-title h3 {
+  display: inline-block;
+  font-size: 1.15rem;
+  padding: 0.4rem 0 0.4rem 1rem;
+  border-left: 5px solid transparent;
+  background-image: linear-gradient(180deg, #e8871e, #b5651d);
+  background-origin: border-box;   /* yêu cầu: background-origin */
+  background-clip: padding-box;    /* yêu cầu: background-clip */
+  color: #2c1810;
+}
+
+/* =========================================================
+   DISH GRID - 3 cột (CSS Grid)
+   ========================================================= */
+.dish-grid {
+  display: grid;                                        /* yêu cầu: Grid */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+
+/* ---------- 6. CLASS SELECTOR ----------
+   .dish-card áp dụng cho mọi thẻ <article> món ăn */
+.dish-card {
+  background-color: #ffffff;
+  border-radius: 16px;                                  /* yêu cầu: border-radius */
+  box-shadow: 0 8px 20px rgba(44, 24, 16, 0.1);          /* yêu cầu: box-shadow */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dish-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(44, 24, 16, 0.16);
+}
+
+.img-wrap {
+  position: relative;
+}
+
+.dish-card img {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;    /* bo góc riêng cho ảnh phía trên card */
+}
+
+.placeholder-text {
+  height: 150px;
+  background-color: #e6d9c4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a6a4a;
+  font-weight: 600;
+  border-radius: 16px 16px 0 0;
+}
+
+.tag-best {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #2c1810;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+}
+
+.dish-card h4 {
+  font-size: 1rem;
+  margin: 0.9rem 1rem 0.3rem;
+}
+
+/* ---------- 7. DESCENDANT SELECTOR ----------
+   Nhắm tới mọi <p> mô tả bên trong .dish-card */
+.dish-card p {
+  margin: 0 1rem;
+  font-size: 0.82rem;
+  color: #7a6249;
+  flex-grow: 1;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.9rem 1rem 1rem;
+}
+
+.price {
+  font-weight: 700;
+  color: #2c1810;
+  font-size: 0.95rem;
+}
+
+/* ---------- 8. PSEUDO-ELEMENT (::before) ----------
+   Thêm ký hiệu tiền tệ trang trí phía trước giá mà không sửa HTML */
+.price::before {
+  content: "₫ ";
+  color: #e8871e;
+}
+
+.card-bottom button {
+  background-color: #e8871e;     /* nút cam theo yêu cầu thiết kế */
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: background-color 0.25s ease;
+}
+
+.card-bottom button:hover {
+  background-color: #c96f14;
+}
+
+/* =========================================================
+   ASIDE - border-image trang trí cho khối "Món Hot Trong Tuần"
+   ========================================================= */
+.aside-box {
+  background-color: #fffaf2;
+  padding: 1.4rem;
+  margin-bottom: 1.5rem;
+  border: 10px solid transparent;
+  border-image: linear-gradient(135deg, #e8871e, #b5651d) 1;  /* yêu cầu: border-image */
+  border-radius: 4px;
+}
+
+.aside-box h3 {
+  font-size: 1.05rem;
+  color: #2c1810;
+}
+
+.fire-icon {
+  margin-right: 4px;
+}
+
+.aside-sub {
+  font-size: 0.78rem;
+  color: #9c8064;
+  margin: 0.3rem 0 1rem;
+}
+
+.hot-list {
+  list-style: none;
+}
+
+.hot-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.hot-list img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(44, 24, 16, 0.12);
+  object-fit: cover;
+  flex-shrink: 0; /* Đảm bảo ảnh không bị bóp méo khi màn hình nhỏ */
+}
+
+.hot-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hot-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hot-price {
+  font-size: 0.78rem;
+  color: #b5651d;
+}
+
+.btn-add {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #e8871e;
+  color: #fff;
+  font-weight: 700;
+  transition: background-color 0.2s ease;
+}
+
+.btn-add:hover {
+  background-color: #c96f14;
+}
+
+/* ---------- pseudo-class :first-child ----------
+   Món hot đầu tiên trong danh sách được nhấn mạnh nhẹ */
+.hot-list li:first-child .hot-name {
+  color: #b5651d;
+}
+
+.vip-box {
+  background-color: #2c1810;
+  color: #f7f1e6;
+  text-align: center;
+  padding: 1.4rem 1rem;
+  border-radius: 12px;
+}
+
+.vip-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.vip-box h4 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: #e8871e;
+}
+
+.vip-box p {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* =========================================================
+   FOOTER - nền nâu đậm, multiple background images
+   ========================================================= */
+footer {
+  margin-top: 1rem;
+  padding: 2.6rem 1.5rem 1.4rem;
+  color: #f7f1e6;
+  /* yêu cầu: multiple background images (lớp hoạ tiết chấm + lớp gradient màu) */
+  background-image:
+    radial-gradient(rgba(247, 241, 230, 0.05) 2px, transparent 2px),
+    linear-gradient(160deg, #2c1810, #1c0f09);
+  background-size: 20px 20px, cover;
+  background-position: 0 0, center;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 1.6rem;
+}
+
+.footer-col {
+  flex: 1 1 220px;
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  color: #e8871e;
+  margin-bottom: 0.7rem;
+}
+
+.footer-col p {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-bottom: 0.35rem;
+}
+
+.footer-note {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.social-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+.social-links a {
+  font-size: 0.82rem;
+  border-bottom: 1px solid transparent;
+}
+
+.social-links a:hover {
+  border-bottom-color: #e8871e;
+  color: #e8871e;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.78rem;
+  opacity: 0.6;
+  border-top: 1px solid rgba(247, 241, 230, 0.12);
+  padding-top: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   RESPONSIVE CƠ BẢN
+   ========================================================= */
+@media (max-width: 900px) {
+  .layout-wrapper {
+    flex-direction: column;
+  }
+
+  main, aside {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  aside {
+    position: static;
+  }
+
+  .dish-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .header-title h1 {
+    font-size: 1.9rem;
+  }
+
+  .dish-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-nav > ul {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
